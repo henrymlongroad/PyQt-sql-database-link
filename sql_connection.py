@@ -15,6 +15,11 @@ class SqlConnection:
         self.db.setDatabaseName(self.path)
         opened_ok = self.db.open()
         return opened_ok
+
+    def find_product_by_number(self):
+        cursor = db.cursor()
+        cursor.execute("select ProductName from customer ")
+        customer = cursor.fetchall()
         
     def close_database(self):
         self.db.close()

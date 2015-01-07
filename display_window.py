@@ -11,18 +11,18 @@ class display_window(QWidget):
         self.results_table = QTableView()
         self.results_layout = QVBoxLayout()
         self.results_widget = QWidget()
-        self.display_results_Layout()
+        self.display_results_layout()
         
 
     def display_results_layout(self):
         
         self.results_layout.addWidget(self.results_table)
         
-        self.results_widget.set_layout(self.result_layout)
+        self.results_widget.setLayout(self.results_layout)
         self.stacked_layout.addWidget(self.results_widget)
     
         
-    def show_results(self):
+    def show_results(self, query):
         if not self.model or not isinstance(self.model,"QSqlQueryModel"):
             self.model = QSqlQueryModel()
         self.model.setQuery(query)
