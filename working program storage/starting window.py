@@ -5,14 +5,14 @@ import sys
 
 from sql_connection import*
 from display_window import*
-from edit_database import*
+
 
 class Window(QMainWindow):
     """a basic window"""
     def __init__(self):
         super().__init__()
         self.setWindowTitle("databases")
-
+        
 
         #set actions
         self.open_database = QAction("Open Database",self)
@@ -21,7 +21,7 @@ class Window(QMainWindow):
         self.show_products = QAction("show products",self)
         self.create_prescription = QAction("create_prescription",self)
         self.show_prescription = QAction("show_prescription",self)
-        self.add_product = QAction("add_product",self)
+        self.add_Product = QAction("add_product",self)
         self.remove_product = QAction("Remove_product",self)
         
         
@@ -43,13 +43,8 @@ class Window(QMainWindow):
         self.prescription_menu = self.menu.addMenu("Prescription")
         self.prescription_menu.addAction(self.create_prescription)
         self.prescription_menu.addAction(self.show_prescription)
-
-        self.addition_menu = self.menu.addMenu("addition")
-        self.addition_menu.addAction(self.add_product)
-
-        self.removal_menu = self.menu.addMenu("remove")
-        self.removal_menu.addAction(self.remove_product)
-
+        
+        
         #add to toolbar        
         self.database_toolbar.addAction(self.open_database)
         self.database_toolbar.addAction(self.close_database)
@@ -63,7 +58,6 @@ class Window(QMainWindow):
         self.close_database.triggered.connect(self.close_connection)
         self.find_product.triggered.connect(self.display_product)
         self.show_products.triggered.connect(self.display_products)
-        self.add_product.triggered.connect(self.add_Product)
 
         
     def open_connection(self):
@@ -78,6 +72,11 @@ class Window(QMainWindow):
         self.connection = SqlConnection(path)
         ok = self.connection.close_Database()
 
+
+    def find_products_by_number(self, values):
+        pass
+
+
     def display_product(self):
         if not hasattr(self,"display_window"):
             self.display_widget = display_window()
@@ -86,11 +85,6 @@ class Window(QMainWindow):
 
     def display_products(self):
         print("it_works")
-
-   def add_Product(self):
-        self.add_product = edit_database()
-        
-
         
 if __name__ == "__main__":
     application = QApplication(sys.argv)
