@@ -3,13 +3,13 @@ db_name = "pharmacy_database.db"
 with sqlite3.connect(db_name)as db:
     cursor = db.cursor()
     sql = """ create table Customer
-    (CustomerID interger,
+    (CustomerID integer,
     FirstName text,
     LastName text,
     Street text,
     Town text,
     Postcode real,
-    TelephoneNum interger,
+    TelephoneNum integer,
     EmailAddress text,
     Primary Key(CustomerID))"""
     
@@ -17,9 +17,9 @@ with sqlite3.connect(db_name)as db:
 
     sql = """ create table Prescription
     (PrescriptionCode real,
-    PharmacistID interger,
-    CustomerID interger,
-    QuantityOfMed interger,
+    PharmacistID integer,
+    CustomerID integer,
+    QuantityOfMed integer,
     Primary Key(PrescriptionCode),
     FOREIGN KEY (PharmacistID) REFERENCES Persons(PharmacistID),
     FOREIGN KEY (CustomerID) REFERENCES Persons(CustomerID))"""
@@ -27,7 +27,7 @@ with sqlite3.connect(db_name)as db:
     cursor.execute(sql)
         
     sql = """ create table Orders
-    (OrderNum interger,
+    (OrderNum integer,
     OrderDate real,
     size real,
     Primary Key(OrderNum))"""
@@ -35,9 +35,9 @@ with sqlite3.connect(db_name)as db:
     cursor.execute(sql)
 
     sql = """ create table product
-    (ProductID interger,
+    (ProductID integer,
     ProductName text,
-    ProductWeight interger,
+    ProductWeight integer,
     ProductCode real,
     Price real,
     Primary Key(ProductID))"""
@@ -45,7 +45,7 @@ with sqlite3.connect(db_name)as db:
     cursor.execute(sql)
     
     sql = """ create table Pharmacist
-    (PharmacistID interger, 
+    (PharmacistID integer, 
     PharmacistName text, 
     PharmacistEmail text, 
     PharmacistTown text, 
@@ -56,7 +56,7 @@ with sqlite3.connect(db_name)as db:
     cursor.execute(sql)
     
     sql = """ create table Warehouse
-    (WarehouseNum interger,
+    (WarehouseNum integer,
     WarehouseTown text,
     WarehouseStreet text,
     WarehousePostcode real,

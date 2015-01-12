@@ -9,5 +9,5 @@ def insert_customer_data(values):
         db.commit()
 
 if __name__ == "__main__":
-    customer = (1, "susannah", "Mason")
+    customer = (1,"susannah", "Mason")
     insert_customer_data(customer)
