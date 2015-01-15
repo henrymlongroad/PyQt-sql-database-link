@@ -69,11 +69,13 @@ class customer_menu():
                     print("please enter the ID you wish to view: " ,end = "")
                     id = input()
                     rename = self.active_detail.display_customer_data(id)
+                    print(rename)
                     done = True
                 elif choices in ["Firstname","firstname"]:
                     print("please enter the Name you wish to view: ",end = "")
                     name = input()
                     rename = self.active_detail.display_customer_data(name)
+                    print(rename)
                     done = True
                 else:
                     print("please enter a valid choice")

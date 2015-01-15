@@ -37,7 +37,7 @@ with sqlite3.connect(db_name)as db:
     sql = """ create table product
     (ProductID integer,
     ProductName text,
-    ProductWeight integer,
+    ProductWeight real,
     ProductCode real,
     Price real,
     Primary Key(ProductID))"""

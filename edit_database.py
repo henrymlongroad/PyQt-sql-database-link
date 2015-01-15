@@ -4,7 +4,7 @@ from PyQt4.QtGui import*
 import sys
 import sqlite3
 
-from product_management import*
+from product_menu import*
 from customer_menu import*
 
 def run_main_menu():
@@ -37,22 +37,42 @@ def run_sub_menu(choice):
         print("4. find item in {0}".format("customer"))
         print("5. delete item in {0}".format("customer"))
         print("choice : ", end = "")
+    elif choice == 2:
+        print("1. insert data into {0}".format("product"))
+        print("2. update data in {0}".format("product"))
+        print("3. display data from {0}".format("product"))
+        print("4. find item in {0}".format("product"))
+        print("5. delete item in {0}".format("product"))
+        print("choice : ", end = "")
     try:
         choice1 = int(input())
     except ValueError:
         print()
-        choice1 = run_sub_menu()
+        choice1 = run_sub_menu(choice)
     return choice1
 
 
 def run_main():
-    connect = customer_menu()
     close = False
     while not close:
+        connect = None
         choice, choice1 = validate_choice()
         if choice == 0:
             close = True
-        elif choice == 1 :
+        elif choice == 1:
+            connect = customer_menu()
+            if choice1 == 1:
+                connect.run_menu(choice1)
+            elif choice1 == 2:
+                connect.run_menu(choice1)
+            elif choice1 == 3:
+                connect.run_menu(choice1)
+            elif choice1 == 4:
+                connect.run_menu(choice1)
+            elif choice1 == 5:
+                connect.run_menu(choice1)
+        elif choice == 2:
+            connect = product_menu()
             if choice1 == 1:
                 connect.run_menu(choice1)
             elif choice1 == 2:
@@ -87,7 +107,8 @@ def insert_customer_data(values):
 def update_customer_data(data):
     with sqlite3.connect("pharmacy_database.db") as db:
         cursor = db.cursor()
-        sql = "update customer set FirstName=?, LastName=?,street=?,town=?,postcode=?,TelephoneNum=?,EmailAddress=? where customerID=?"
+        sql = "update customer set FirstName=?, L
+        astName=?,street=?,town=?,postcode=?,TelephoneNum=?,EmailAddress=? where customerID=?"
         cursor.execute(sql,data)
         db.commit()
 
