@@ -6,6 +6,11 @@ import sqlite3
 
 from product_menu import*
 from customer_menu import*
+from Prescription_menu import*
+from order_menu import*
+from manufacturer_menu import*
+
+
 
 def run_main_menu():
     print("which area of the database do you wish to access")
@@ -43,6 +48,27 @@ def run_sub_menu(choice):
         print("3. display data from {0}".format("product"))
         print("4. find item in {0}".format("product"))
         print("5. delete item in {0}".format("product"))
+        print("choice : ", end = "")
+    elif choice == 3:
+        print("1. insert data into {0}".format("prescription"))
+        print("2. update data in {0}".format("prescription"))
+        print("3. display data from {0}".format("prescription"))
+        print("4. find item in {0}".format("prescription"))
+        print("5. delete item in {0}".format("prescription"))
+        print("choice : ", end = "")
+    elif choice == 4:
+        print("1. insert data into {0}".format("orders"))
+        print("2. update data in {0}".format("orders"))
+        print("3. display data from {0}".format("orders"))
+        print("4. find item in {0}".format("orders"))
+        print("5. delete item in {0}".format("orders"))
+        print("choice : ", end = "")
+    elif choice == 5:
+        print("1. insert data into {0}".format("manufacturer"))
+        print("2. update data in {0}".format("manufacturer"))
+        print("3. display data from {0}".format("manufacturer"))
+        print("4. find item in {0}".format("manufacturer"))
+        print("5. delete item in {0}".format("manufacturer"))
         print("choice : ", end = "")
     try:
         choice1 = int(input())
@@ -83,6 +109,42 @@ def run_main():
                 connect.run_menu(choice1)
             elif choice1 == 5:
                 connect.run_menu(choice1)
+        elif choice == 3:
+            connect = prescription_menu()
+            if choice1 == 1:
+                connect.run_menu(choice1)
+            elif choice1 == 2:
+                connect.run_menu(choice1)
+            elif choice1 == 3:
+                connect.run_menu(choice1)
+            elif choice1 == 4:
+                connect.run_menu(choice1)
+            elif choice1 == 5:
+                connect.run_menu(choice1)
+        elif choice == 4:
+            connect = order_menu()
+            if choice1 == 1:
+                connect.run_menu(choice1)
+            elif choice1 == 2:
+                connect.run_menu(choice1)
+            elif choice1 == 3:
+                connect.run_menu(choice1)
+            elif choice1 == 4:
+                connect.run_menu(choice1)
+            elif choice1 == 5:
+                connect.run_menu(choice1)
+        elif choice == 5:
+            connect = manufacturer_menu()
+            if choice1 == 1:
+                connect.run_menu(choice1)
+            elif choice1 == 2:
+                connect.run_menu(choice1)
+            elif choice1 == 3:
+                connect.run_menu(choice1)
+            elif choice1 == 4:
+                connect.run_menu(choice1)
+            elif choice1 == 5:
+                connect.run_menu(choice1)
         else:
             print("Hey Listen")
     
@@ -107,8 +169,7 @@ def insert_customer_data(values):
 def update_customer_data(data):
     with sqlite3.connect("pharmacy_database.db") as db:
         cursor = db.cursor()
-        sql = "update customer set FirstName=?, L
-        astName=?,street=?,town=?,postcode=?,TelephoneNum=?,EmailAddress=? where customerID=?"
+        sql = "update customer set FirstName=?, LastName=?,street=?,town=?,postcode=?,TelephoneNum=?,EmailAddress=? where customerID=?"
         cursor.execute(sql,data)
         db.commit()
 

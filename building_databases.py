@@ -29,7 +29,7 @@ with sqlite3.connect(db_name)as db:
     sql = """ create table Orders
     (OrderNum integer,
     OrderDate real,
-    size real,
+    OrderSize real,
     Primary Key(OrderNum))"""
     
     cursor.execute(sql)
