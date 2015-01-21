@@ -11,71 +11,106 @@ class manufacturer_menu():
 
     def run_menu(self,choice):
         if choice == 1:
-            pharmacist_id= "suesannah9635"
-            customer_id = input("please enter the customer NHS number: ")
-            QuantityOfMed = input("please enter the quantity of medication requested: ")
-            values = (prescription_code,pharmacist_id,customer_id,QuantityOfMed)
-            self.active_detail.insert_prescription_data(values)
+            manufacturer = input("please enter the name of the manufacturer: ")
+            product= input("please enter the name of the product: ")
+            manufacturertown = input("please enter the town the manufacturer is located: ")
+            manufacturerstreet = input("please enter the street which the manufacturer is based: ")
+            manufacturerpostcode = input("please enter the postcode of the manufacturer: ")
+            values = (manufacturer,product,manufacturertown,manufacturerstreet,manufacturerpostcode)
+            self.active_detail.insert_manufacturer_data(values)
         elif choice == 2:
             id = input("please enter the id of the product you wish to change: ")
             choice = self.get_answers()
-            prescription_code = get_prescription_code()
-            pharmacist_id = get_pharmacist_id()
-            Customer_id = get_Customer_id()
-            QuantityOfMed = get_QuantityOfMed()
+            manufacturer = self.get_manufacturer_name(id)
+            product = self.get_product(id)
+            town = self.get_manufacturer_town(id)
+            street= self.get_manufacturer_street(id)
+            postcode = self.get_manufacturer_postcode(id)
             if choice == 1:
-                prescription_code = input("please enter the name of the product: ")
-                value = (prescription_code,pharmacist_id,Customer_id,QuantityOfMed)
+                manufacturer = input("please enter the name of the manufacturer: ")
+                value = (manufacturer,product,town,street,postcode)
             elif choice == 2:
-                prescription_code = input("please enter the name of the product: ")
-                pharmacist_id = input("please enter the new weight of the the product: ")
-                value = (prescription_code,pharmacist_id,Customer_id,QuantityOfMed)
+                manufacturer = input("please enter the name of the manufacturer: ")
+                product = input("please enter the new weight of the the manufacturer: ")
+                value = (manufacturer,product,town,street,postcode)
             elif choice == 3:
-                prescription_code = input("please enter the name of the product: ")
-                pharmacist_id = input("please enter the new weight of the the product: ")
-                ProductCode = input("please enter the new ProductCode of the product: ")
-                value = (prescription_code,pharmacist_id,Customer_id,QuantityOfMed)
+                manufacturer = input("please enter the name of the manufacturer: ")
+                product = input("please enter the new weight of the the manufacturer: ")
+                town = input("please enter the new town of the manufacturer: ")
+                value = (manufacturer,product,town,street,postcode)
             elif choice == 4:
-                pharmacist_id = input("please enter the new weight of the the product: ")
-                value = (prescription_code,pharmacist_id,Customer_id,QuantityOfMed)
+                manufacturer = input("please enter the name of the manufacturer: ")
+                product = input("please enter the new weight of the the manufacturer: ")
+                town = input("please enter the new town of the manufacturer: ")
+                street= input("please enter the new street of the the manufacturer")
+                value = (manufacturer,product,town,street,postcode)
             elif choice == 5:
-                pharmacist_id = input("please enter the new weight of the the product: ")
-                ProductCode = input("please enter the new ProductCode of the product: ")
+                product = input("please enter the new product of the the manufacturer: ")
+                value = (manufacturer,product,town,street,postcode)
             elif choice == 6:
-                pharmacist_id = input("please enter the new weight of the the product: ")
-                ProductCode = input("please enter the new ProductCode of the product: ")
-                QuantityOfMed = input("please enter the new QuantityOfMed of the the product")
+                product = input("please enter the new product of the the manufacturer: ")
+                town = input("please enter the new town of the manufacturer: ")
+                value = (manufacturer,product,town,street,postcode)
             elif choice == 7:
-                productCode = input("please enter the new ProductCode of the product: ")
+                product = input("please enter the new weight of the the manufacturer: ")
+                street = input("please enter the new town of the manufacturer: ")
+                postcode = input("please enter the new street of the the manufacturer")
+                value = (manufacturer,product,town,street,postcode)
             elif choice == 8:
-                productCode = input("please enter the new ProductCode of the product: ")
-                QuantityOfMed = input("please enter the new QuantityOfMed of the the product")
+                product = input("please enter the new weight of the the manufacturer: ")
+                town = input("please enter the new town of the manufacturer: ")
+                street= input("please enter the new street of the the manufacturer")
+                postcode = input("please enter the new postcode of the the manufacturer")
+                value = (manufacturer,product,town,street,postcode)
             elif choice == 9:
-                QuantityOfMed = input("please enter the new QuantityOfMed of the the product")  
+                street = input("please enter the new town of the manufacturer: ")
+                value = (manufacturer,product,town,street,postcode)
             elif choice == 10:
-                prescription_code = input("please enter the name of the product: ")
-                pharmacist_id = input("please enter the new weight of the the product: ")
-                productCode = input("please enter the new ProductCode of the product: ")
-                QuantityOfMed = input("please enter the new QuantityOfMed of the the product")
+                town = input("please enter the new town of the manufacturer: ")
+                street = input("please enter the new street of the the manufacturer")
+                value = (manufacturer,product,town,street,postcode)
+            elif choice == 11:
+                town = input("please enter the new town of the manufacturer: ")
+                street= input("please enter the new street of the the manufacturer")
+                postcode = input("please enter the new postcode of the the manufacturer")
+                value = (manufacturer,product,town,street,postcode)
+            elif choice == 12:
+                street = input("please enter the new street of the the manufacturer")
+                value = (manufacturer,product,town,street,postcode)
+            elif choice == 13:
+                street = input("please enter the new street of the the manufacturer")
+                postcode = input("please enter the new postcode of the the manufacturer")
+                value = (manufacturer,product,town,street,postcode)
+            elif choice == 14:
+                postcode == input("please enter the new postcode of the the manufacturer")
+                value = (manufacturer,product,town,street,postcode)
+            elif choice == 15:
+                manufacturer = input("please enter the name of the manufacturer: ")
+                product = input("please enter the new weight of the the manufacturer: ")
+                town = input("please enter the new town of the manufacturer: ")
+                street = input("please enter the new street of the manufacturer: ")
+                postcode = input("please enter the new postcode of the the manufacturer")
+                value = (manufacturer,product,town,street,postcode)
+            self.active_detail.update_manufacturer_data(value)
         elif choice == 3:
-            pprescription = self.active_detail.prescription_data()
-            print(prescription)
+            manufacturer = self.active_detail.manufacturer_data()
+            print(manufacturer)
         elif choice == 4:
             done = False
             while not done:
-                  print("would you like to search by pharmacist id or by customer id: ",end = "")
+                print("would you like to search by manufacturer or by product: ",end = "")
                 choices = input()
                 choices = choices.lower()
-                if choices in ["pharmacist id"]:
+                if choices in ["manufacturer"]:
                     print("please enter the pharmacist id you wish to view: " ,end = "")
                     id = input()
-                    rename = self.active_detail.display_prescription_data(id)
+                    rename = self.active_detail.display_manufacturer_data(id)
                     print(rename)
                     done = True
-                elif choices in ["customer id"]
+                elif choices in ["product"]:
                     print("please enter the customer id you wish to view: ",end = "")
                     name = input()
-                    rename = self.active_detail.display_prescription_data(name)
+                    rename = self.active_detail.display_manufacturer_data(name)
                     print(rename)
                     done = True
                 else:
@@ -83,34 +118,42 @@ class manufacturer_menu():
                     done = False
         elif choice == 5:
             choice = input("which id do you want to delete: ")
-            self.active_detail.delete_prescription_data(choice)
-    def get_prescription_code():
+            self.active_detail.delete_manufacturer_data(choice)
+
+    def get_Manufacturer_name(self,id):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
             cursor.execute("select Manufacturer from Manufacturer where Manufacturer=?",(id,))
+            manufacturer = cursor.fetchone()
+            return manufacturer
+        
+    def get_Product_info(self,id):
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            cursor.execute("select Product from Manufacturer where Manufacturer=?",(id,))
             Product = cursor.fetchone()
             return Product
 
-    def get_pharmacist_id():
+    def get_manufacturer_town(self,id):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
-            cursor.execute("select ProductWeight from Product where ProductID=?",(id,))
-            Product = cursor.fetchone()
-            return Product
+            cursor.execute("select ManufacturerTown from Manufacturer where Manufacturer=?",(id,))
+            town = cursor.fetchone()
+            return town
         
-    def get_customer_id():
+    def get_manufacturer_street(self,id):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
-            cursor.execute("select Productcode from Product where ProductID=?",(id,))
-            Product = cursor.fetchone()
-            return Product
+            cursor.execute("select ManufacturerStreet from Manufacturer where Manufacturer=?",(id,))
+            street = cursor.fetchone()
+            return street
         
-    def get_prescription_quantity():
+    def get_manufacturer_postcode(self,id):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
-            cursor.execute("select QuantityOfMed from Product where ProductID=?",(id,))
-            Product = cursor.fetchone()
-            return Product
+            cursor.execute("select ManufacturerPostcode from Manufacturer where Manufacturer=?",(id,))
+            postcode = cursor.fetchone()
+            return postcode
 
                           
     def get_answers(self):

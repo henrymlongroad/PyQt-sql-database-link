@@ -4,7 +4,7 @@ import sqlite3
 from prescription_management import*
 
 #menu for managing customer
-class product_menu():
+class prescription_menu():
     def __init__(self):
         self.running = None
         self.active_detail = prescription_manage()
@@ -19,10 +19,10 @@ class product_menu():
         elif choice == 2:
             id = input("please enter the id of the product you wish to change: ")
             choice = self.get_answers()
-            prescription_code = get_prescription_code()
-            pharmacist_id = get_pharmacist_id()
-            Customer_id = get_Customer_id()
-            QuantityOfMed = get_QuantityOfMed()
+            prescription_code = self.get_prescription_code(id)
+            pharmacist_id = self.get_pharmacist_id(id)
+            Customer_id = self.get_Customer_id(id)
+            QuantityOfMed = self.get_QuantityOfMed(id)
             if choice == 1:
                 prescription_code = input("please enter the name of the product: ")
                 value = (prescription_code,pharmacist_id,Customer_id,QuantityOfMed)
@@ -41,29 +41,36 @@ class product_menu():
             elif choice == 5:
                 pharmacist_id = input("please enter the new weight of the the product: ")
                 ProductCode = input("please enter the new ProductCode of the product: ")
+                value = (prescription_code,pharmacist_id,Customer_id,QuantityOfMed)
             elif choice == 6:
                 pharmacist_id = input("please enter the new weight of the the product: ")
                 ProductCode = input("please enter the new ProductCode of the product: ")
                 QuantityOfMed = input("please enter the new QuantityOfMed of the the product")
+                value = (prescription_code,pharmacist_id,Customer_id,QuantityOfMed)
             elif choice == 7:
                 productCode = input("please enter the new ProductCode of the product: ")
+                value = (prescription_code,pharmacist_id,Customer_id,QuantityOfMed)
             elif choice == 8:
                 productCode = input("please enter the new ProductCode of the product: ")
                 QuantityOfMed = input("please enter the new QuantityOfMed of the the product")
+                value = (prescription_code,pharmacist_id,Customer_id,QuantityOfMed)
             elif choice == 9:
-                QuantityOfMed = input("please enter the new QuantityOfMed of the the product")  
+                QuantityOfMed = input("please enter the new QuantityOfMed of the the product")
+                value = (prescription_code,pharmacist_id,Customer_id,QuantityOfMed)
             elif choice == 10:
                 prescription_code = input("please enter the name of the product: ")
                 pharmacist_id = input("please enter the new weight of the the product: ")
                 productCode = input("please enter the new ProductCode of the product: ")
                 QuantityOfMed = input("please enter the new QuantityOfMed of the the product")
+                value = (prescription_code,pharmacist_id,Customer_id,QuantityOfMed)
+            self.active_detail.update_product_data(value)
         elif choice == 3:
-            pprescription = self.active_detail.prescription_data()
+            prescription = self.active_detail.prescription_data()
             print(prescription)
         elif choice == 4:
             done = False
             while not done:
-                  print("would you like to search by pharmacist id or by customer id: ",end = "")
+                print("would you like to search by pharmacist id or by customer id: ",end = "")
                 choices = input()
                 choices = choices.lower()
                 if choices in ["pharmacist id"]:
@@ -72,7 +79,7 @@ class product_menu():
                     rename = self.active_detail.display_prescription_data(id)
                     print(rename)
                     done = True
-                elif choices in ["customer id"]
+                elif choices in ["customer id"]:
                     print("please enter the customer id you wish to view: ",end = "")
                     name = input()
                     rename = self.active_detail.display_prescription_data(name)
@@ -84,28 +91,28 @@ class product_menu():
         elif choice == 5:
             choice = input("which id do you want to delete: ")
             self.active_detail.delete_prescription_data(choice)
-    def get_prescription_code():
+    def get_prescription_code(self,id):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
             cursor.execute("select ProductName from Product where ProductID=?",(id,))
             Product = cursor.fetchone()
             return Product
 
-    def get_pharmacist_id():
+    def get_pharmacist_id(self,id):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
             cursor.execute("select ProductWeight from Product where ProductID=?",(id,))
             Product = cursor.fetchone()
             return Product
         
-    def get_customer_id():
+    def get_customer_id(self,id):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
             cursor.execute("select Productcode from Product where ProductID=?",(id,))
             Product = cursor.fetchone()
             return Product
         
-    def get_prescription_quantity():
+    def get_prescription_quantity(self,id):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
             cursor.execute("select QuantityOfMed from Product where ProductID=?",(id,))

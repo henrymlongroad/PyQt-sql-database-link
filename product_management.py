@@ -16,7 +16,7 @@ class product_manage():
     def update_product_data(self,data):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
-            sql = "update Product set ProductCode=?, Price=? where ProductID=?"
+            sql = "update Product set ProductName=?,ProductWeight=?,ProductCode=?,Price=? where ProductID=?"
             cursor.execute(sql,data)
             db.commit()
 

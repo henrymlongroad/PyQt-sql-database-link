@@ -20,10 +20,10 @@ class product_menu():
         elif choice == 2:
             id = input("please enter the id of the product you wish to change: ")
             choice = self.get_answers()
-            product_name = get_product_name()
-            product_weight = get_product_weight()
-            product_code = get_product_code()
-            price = get_product_price()
+            product_name = self.get_product_name(id)
+            product_weight = self.get_product_weight(id)
+            product_code = self.get_product_code(id)
+            price = self.get_product_price(id)
             if choice == 1:
                 product_name = input("please enter the name of the product: ")
                 value = (product_name,product_weight,product_code,price)
@@ -42,22 +42,29 @@ class product_menu():
             elif choice == 5:
                 product_weight = input("please enter the new weight of the the product: ")
                 ProductCode = input("please enter the new ProductCode of the product: ")
+                value = (product_name,product_weight,product_code,price)
             elif choice == 6:
                 product_weight = input("please enter the new weight of the the product: ")
                 ProductCode = input("please enter the new ProductCode of the product: ")
                 price = input("please enter the new price of the the product")
+                value = (product_name,product_weight,product_code,price)
             elif choice == 7:
                 productCode = input("please enter the new ProductCode of the product: ")
+                value = (product_name,product_weight,product_code,price)
             elif choice == 8:
                 productCode = input("please enter the new ProductCode of the product: ")
                 price = input("please enter the new price of the the product")
+                value = (product_name,product_weight,product_code,price)
             elif choice == 9:
-                price = input("please enter the new price of the the product")  
+                price = input("please enter the new price of the the product")
+                value = (product_name,product_weight,product_code,price)
             elif choice == 10:
                 product_name = input("please enter the name of the product: ")
                 product_weight = input("please enter the new weight of the the product: ")
                 productCode = input("please enter the new ProductCode of the product: ")
                 price = input("please enter the new price of the the product")
+                value = (product_name,product_weight,product_code,price)
+            self.active_detail.update_product_data(value,id)
         elif choice == 3:
             product = self.active_detail.product_data()
             print(product)
@@ -86,28 +93,28 @@ class product_menu():
             choice = input("which id do you want to delete: ")
             self.active_detail.delete_product_data(choice)
 
-    def get_product_name():
+    def get_product_name(self,id):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
             cursor.execute("select ProductName from Product where ProductID=?",(id,))
             Product = cursor.fetchone()
             return Product
 
-    def get_product_Weight():
+    def get_product_weight(self,id):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
             cursor.execute("select ProductWeight from Product where ProductID=?",(id,))
             Product = cursor.fetchone()
             return Product
         
-    def get_product_code():
+    def get_product_code(self,id):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
             cursor.execute("select Productcode from Product where ProductID=?",(id,))
             Product = cursor.fetchone()
             return Product
         
-    def get_product_price():
+    def get_product_price(self,id):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
             cursor.execute("select Price from Product where ProductID=?",(id,))

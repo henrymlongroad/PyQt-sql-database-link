@@ -1,12 +1,13 @@
 from PyQt4.QtCore import*
 from PyQt4.QtGui import*
 
+
 import sys
 import sqlite3
 
 from product_menu import*
 from customer_menu import*
-from Prescription_menu import*
+from prescription_menu import*
 from order_menu import*
 from manufacturer_menu import*
 
