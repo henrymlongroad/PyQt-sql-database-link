@@ -15,7 +15,7 @@ class customer_manage():
     def update_customer_data(self,data):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
-            sql = "update customer set FirstName=?, LastName=?,street=?,town=?,postcode=?,TelephoneNum=?,EmailAddress=? where customerID=?"
+            sql = "update customer set FirstName=?, LastName=?,Street=?,Town=?,Postcode=?,TelephoneNum=?,EmailAddress=? where customerID=?"
             cursor.execute(sql,data)
             db.commit()
 

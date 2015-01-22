@@ -14,56 +14,61 @@ class prescription_menu():
             pharmacist_id= "suesannah9635"
             customer_id = input("please enter the customer NHS number: ")
             QuantityOfMed = input("please enter the quantity of medication requested: ")
-            values = (prescription_code,pharmacist_id,customer_id,QuantityOfMed)
+            values = (pharmacist_id,customer_id,QuantityOfMed)
             self.active_detail.insert_prescription_data(values)
         elif choice == 2:
             id = input("please enter the id of the product you wish to change: ")
             choice = self.get_answers()
             prescription_code = self.get_prescription_code(id)
+            print(prescription_code)
             pharmacist_id = self.get_pharmacist_id(id)
-            Customer_id = self.get_Customer_id(id)
-            QuantityOfMed = self.get_QuantityOfMed(id)
+            print(pharmacist_id)
+            Customer_id = self.get_customer_id(id)
+            print(Customer_id)
+            QuantityOfMed = self.get_prescription_quantity(id)
+            print(QuantityOfMed)
             if choice == 1:
                 prescription_code = input("please enter the name of the product: ")
-                value = (prescription_code,pharmacist_id,Customer_id,QuantityOfMed)
+                
             elif choice == 2:
                 prescription_code = input("please enter the name of the product: ")
-                pharmacist_id = input("please enter the new weight of the the product: ")
-                value = (prescription_code,pharmacist_id,Customer_id,QuantityOfMed)
+                pharmacist_id = input("please enter the new pharmacist_id of the the prescription: ")
+                
             elif choice == 3:
                 prescription_code = input("please enter the name of the product: ")
-                pharmacist_id = input("please enter the new weight of the the product: ")
-                ProductCode = input("please enter the new ProductCode of the product: ")
-                value = (prescription_code,pharmacist_id,Customer_id,QuantityOfMed)
+                pharmacist_id = input("please enter the new pharmacist_id of the the prescription: ")
+                customer_id = input("please enter the new customer_id of the prescription: ")
+                
             elif choice == 4:
-                pharmacist_id = input("please enter the new weight of the the product: ")
-                value = (prescription_code,pharmacist_id,Customer_id,QuantityOfMed)
+                pharmacist_id = input("please enter the new pharmacist_id of the the prescription: ")
+                
             elif choice == 5:
-                pharmacist_id = input("please enter the new weight of the the product: ")
-                ProductCode = input("please enter the new ProductCode of the product: ")
-                value = (prescription_code,pharmacist_id,Customer_id,QuantityOfMed)
+                pharmacist_id = input("please enter the new pharmacist_id of the the prescription: ")
+                customer_id = input("please enter the new customer_id of the prescription: ")
+                
             elif choice == 6:
-                pharmacist_id = input("please enter the new weight of the the product: ")
-                ProductCode = input("please enter the new ProductCode of the product: ")
+                pharmacist_id = input("please enter the new pharmacist_id of the the prescription: ")
+                customer_id = input("please enter the new customer_id of the prescription: ")
                 QuantityOfMed = input("please enter the new QuantityOfMed of the the product")
-                value = (prescription_code,pharmacist_id,Customer_id,QuantityOfMed)
+                
             elif choice == 7:
-                productCode = input("please enter the new ProductCode of the product: ")
-                value = (prescription_code,pharmacist_id,Customer_id,QuantityOfMed)
+               customer_id = input("please enter the new customer_id of the prescription: ")
+                
             elif choice == 8:
-                productCode = input("please enter the new ProductCode of the product: ")
-                QuantityOfMed = input("please enter the new QuantityOfMed of the the product")
-                value = (prescription_code,pharmacist_id,Customer_id,QuantityOfMed)
+                customer_id = input("please enter the new customer_id of the prescription: ")
+                QuantityOfMed = input("please enter the new QuantityOfMed of the the prescription: ")
+                
             elif choice == 9:
-                QuantityOfMed = input("please enter the new QuantityOfMed of the the product")
-                value = (prescription_code,pharmacist_id,Customer_id,QuantityOfMed)
+                QuantityOfMed = input("please enter the new QuantityOfMed of the the prescription: ")
+                
             elif choice == 10:
-                prescription_code = input("please enter the name of the product: ")
-                pharmacist_id = input("please enter the new weight of the the product: ")
-                productCode = input("please enter the new ProductCode of the product: ")
-                QuantityOfMed = input("please enter the new QuantityOfMed of the the product")
-                value = (prescription_code,pharmacist_id,Customer_id,QuantityOfMed)
-            self.active_detail.update_product_data(value)
+                prescription_code = input("please enter the prescription_code of the prescription: ")
+                pharmacist_id = input("please enter the new pharmacist_id of the the prescription: ")
+                customer_id = input("please enter the new customer_id of the prescription: ")
+                QuantityOfMed = input("please enter the new QuantityOfMed of the the prescription: ")
+                
+            value = (pharmacist_id,Customer_id,QuantityOfMed,prescription_code)
+            self.active_detail.update_prescription_data(value)
         elif choice == 3:
             prescription = self.active_detail.prescription_data()
             print(prescription)
@@ -91,33 +96,34 @@ class prescription_menu():
         elif choice == 5:
             choice = input("which id do you want to delete: ")
             self.active_detail.delete_prescription_data(choice)
+            
     def get_prescription_code(self,id):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
-            cursor.execute("select ProductName from Product where ProductID=?",(id,))
-            Product = cursor.fetchone()
-            return Product
+            cursor.execute("select PrescriptionCode from Prescription where PrescriptionCode=?",(id,))
+            PrescriptionCode = cursor.fetchone()
+            return PrescriptionCode
 
     def get_pharmacist_id(self,id):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
-            cursor.execute("select ProductWeight from Product where ProductID=?",(id,))
-            Product = cursor.fetchone()
-            return Product
+            cursor.execute("select PharmacistID from Prescription where PrescriptionCode=?",(id,))
+            PharmacistID = cursor.fetchone()
+            return PharmacistID
         
     def get_customer_id(self,id):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
-            cursor.execute("select Productcode from Product where ProductID=?",(id,))
-            Product = cursor.fetchone()
-            return Product
+            cursor.execute("select CustomerID from Prescription where PrescriptionCode=?",(id,))
+            CustomerID = cursor.fetchone()
+            return CustomerID
         
     def get_prescription_quantity(self,id):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
-            cursor.execute("select QuantityOfMed from Product where ProductID=?",(id,))
-            Product = cursor.fetchone()
-            return Product
+            cursor.execute("select QuantityOfMed from Prescription where PrescriptionCode=?",(id,))
+            QuantityOfMed = cursor.fetchone()
+            return QuantityOfMed
 
                           
     def get_answers(self):

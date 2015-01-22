@@ -16,10 +16,10 @@ with sqlite3.connect(db_name)as db:
     cursor.execute(sql)
 
     sql = """ create table Prescription
-    (PrescriptionCode real,
-    PharmacistID integer,
-    CustomerID integer,
-    QuantityOfMed integer,
+    (PrescriptionCode integer,
+    PharmacistID real,
+    CustomerID real,
+    QuantityOfMed real,
     Primary Key(PrescriptionCode),
     FOREIGN KEY (PharmacistID) REFERENCES Persons(PharmacistID),
     FOREIGN KEY (CustomerID) REFERENCES Persons(CustomerID))"""

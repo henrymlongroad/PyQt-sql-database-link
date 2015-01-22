@@ -14,6 +14,7 @@ class orders_manage():
             db.commit()
 
     def update_order_data(self,data):
+        print(data)
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
             sql = "update Orders set OrderDate=?, OrderSize=? where OrderNum=?"

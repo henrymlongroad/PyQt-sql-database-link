@@ -18,53 +18,44 @@ class product_menu():
             values = (product_name,product_weight,product_code,price)
             self.active_detail.insert_product_data(values)
         elif choice == 2:
-            id = input("please enter the id of the product you wish to change: ")
+            choice1 = input("please enter the id of the product you wish to change: ")
             choice = self.get_answers()
-            product_name = self.get_product_name(id)
-            product_weight = self.get_product_weight(id)
-            product_code = self.get_product_code(id)
-            price = self.get_product_price(id)
+            product_name = self.get_product_name(choice1)
+            product_weight = self.get_product_weight(choice1)
+            product_code = self.get_product_code(choice1)
+            price = self.get_product_price(choice1)
             if choice == 1:
                 product_name = input("please enter the name of the product: ")
-                value = (product_name,product_weight,product_code,price)
             elif choice == 2:
                 product_name = input("please enter the name of the product: ")
                 product_weight = input("please enter the new weight of the the product: ")
-                value = (product_name,product_weight,product_code,price)
             elif choice == 3:
                 product_name = input("please enter the name of the product: ")
                 product_weight = input("please enter the new weight of the the product: ")
                 ProductCode = input("please enter the new ProductCode of the product: ")
-                value = (product_name,product_weight,product_code,price)
             elif choice == 4:
                 product_weight = input("please enter the new weight of the the product: ")
-                value = (product_name,product_weight,product_code,price)
             elif choice == 5:
                 product_weight = input("please enter the new weight of the the product: ")
                 ProductCode = input("please enter the new ProductCode of the product: ")
-                value = (product_name,product_weight,product_code,price)
             elif choice == 6:
                 product_weight = input("please enter the new weight of the the product: ")
                 ProductCode = input("please enter the new ProductCode of the product: ")
                 price = input("please enter the new price of the the product")
-                value = (product_name,product_weight,product_code,price)
             elif choice == 7:
                 productCode = input("please enter the new ProductCode of the product: ")
-                value = (product_name,product_weight,product_code,price)
             elif choice == 8:
                 productCode = input("please enter the new ProductCode of the product: ")
                 price = input("please enter the new price of the the product")
-                value = (product_name,product_weight,product_code,price)
             elif choice == 9:
                 price = input("please enter the new price of the the product")
-                value = (product_name,product_weight,product_code,price)
             elif choice == 10:
                 product_name = input("please enter the name of the product: ")
                 product_weight = input("please enter the new weight of the the product: ")
                 productCode = input("please enter the new ProductCode of the product: ")
                 price = input("please enter the new price of the the product")
-                value = (product_name,product_weight,product_code,price)
-            self.active_detail.update_product_data(value,id)
+            value = (product_name,product_weight,product_code,price,choice1)
+            self.active_detail.update_product_data(value)
         elif choice == 3:
             product = self.active_detail.product_data()
             print(product)
@@ -120,7 +111,7 @@ class product_menu():
             cursor.execute("select Price from Product where ProductID=?",(id,))
             Product = cursor.fetchone()
             return Product
-
+        db.commit()
                           
     def get_answers(self):
         print("what do you want to update?")

@@ -13,25 +13,21 @@ class order_menu():
         if choice == 1:
             order_date = input("please enter the order date: ")
             order_size = input("please enter the size of the order: ")
-            values = (orderdate,order_size)
+            values = (order_date,order_size)
             self.active_detail.insert_order_data(values)
         elif choice == 2:
             id = input("please enter the id of the product you wish to change: ")
             choice = self.get_answers()
-            orderdate = self.get_order_date(id)
+            order_date = self.get_order_date(id)
             order_size = self.get_order_size(id)
             if choice == 1:
-                orderdate = input("please enter the name of the product: ")
-                value = (orderdate,order_size)
+                order_date = input("please enter the date of the order: ")
             elif choice == 2:
-                orderdate = input("please enter the name of the product: ")
-                order_size = input("please enter the new weight of the the product: ")
-                value = (orderdate,order_size)
+                order_size = input("please enter the new size of the order: ")
             elif choice == 3:
-                orderdate = input("please enter the name of the product: ")
-                order_size = input("please enter the new weight of the the product: ")
-                ProductCode = input("please enter the new ProductCode of the product: ")
-                value = (orderdate,order_size,ProductCode)
+                order_date = input("please enter the date of the order: ")
+                order_size = input("please enter the new size of the order: ")
+            value = (order_date,order_size,id)
             self.active_detail.update_order_data(value)
         elif choice == 3:
             order = self.active_detail.order_data()
@@ -60,7 +56,7 @@ class order_menu():
         elif choice == 5:
             choice = input("which id do you want to delete: ")
             self.active_detail.delete_order_data(choice)
-    def get_orderdate(self,id):
+    def get_order_date(self,id):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
             cursor.execute("select OrderDate from Orders where OrderNum=?",(id,))
@@ -75,7 +71,7 @@ class order_menu():
     def get_answers(self):
         print("what do you want to update?")
         print()
-        print("1.orderdate")
+        print("1.order_date")
         print("2.order_size")
         print("3.update all")
         print("what is your choice: ",end = "")

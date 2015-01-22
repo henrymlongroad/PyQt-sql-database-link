@@ -16,7 +16,7 @@ class prescription_manage():
     def update_prescription_data(self,data):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
-            sql = "update Prescription set PharmacistID=?,CustomerID=?, QuantityOfMed=? where PrescriptionCode=?"
+            sql = "update Prescription set PharmacistID=?, CustomerID=?, QuantityOfMed=? where PrescriptionCode=?"
             cursor.execute(sql,data)
             db.commit()
 

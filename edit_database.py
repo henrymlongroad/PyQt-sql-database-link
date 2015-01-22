@@ -33,7 +33,7 @@ def run_main_menu():
     elif choice in range(1,6):
         choice1 = run_sub_menu(choice)
     else:
-        run_main_menu()
+        choice, choice1 = run_main_menu()
     return choice, choice1
 def run_sub_menu(choice):
     if choice == 1:
