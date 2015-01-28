@@ -13,7 +13,23 @@ class orders_manage():
             cursor.execute(sql,values)
             db.commit()
 
-    def update_order_data(self,data):
+    def update_order_date(self,data):
+        print(data)
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            sql = "update Orders set OrderDate=? where OrderNum=?"
+            cursor.execute(sql,data)
+            db.commit()
+
+    def update_order_size(self,data):
+        print(data)
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            sql = "update Orders set OrderSize=? where OrderNum=?"
+            cursor.execute(sql,data)
+            db.commit()
+
+    def update_order_sizedate(self,data):
         print(data)
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()

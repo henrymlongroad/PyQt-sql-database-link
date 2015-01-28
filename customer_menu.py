@@ -12,6 +12,7 @@ class customer_menu():
     def run_menu(self,choice):
         if choice == 1:
             done = False
+            NHSNumber = input("please enter the patients NHSnumber: ")
             FirstName = input("please enter your first name: ") 
             LastName = input("please enter your last name: ")
             print("do you wish to give your address: ", end = "")
@@ -19,7 +20,7 @@ class customer_menu():
                 answer = input()
                 answer = answer.lower()
                 if answer in ["no","n"]:
-                    values = (FirstName,LastName,"NA","NA","NA","NA","NA")
+                    values = (NHSNumber,FirstName,LastName,"NA","NA","NA","NA","NA")
                     done = True
                 elif answer in ["yes","y"]:
                     streetname = input("please enter your street name: ") 
@@ -27,7 +28,7 @@ class customer_menu():
                     postcode = input("please enter your Postcode: ")
                     phone_number = input("please enter your Phone number: ")
                     email = input("please enter your email: ")
-                    values = (FirstName,LastName,streetname,town,postcode,phone_number,email)
+                    values = (NHSNumber,FirstName,LastName,streetname,town,postcode,phone_number,email)
                     done = True
                 else:
                     done = False
@@ -82,4 +83,29 @@ class customer_menu():
                     done = False
         elif choice == 5:
             choice = input("which id do you want to delete: ")
-            self.active_detail.delete_customer_data(choice) 
+            self.active_detail.delete_customer_data(choice)
+            
+    def run_secondary_menu(self,NHSNumber):
+            done = False
+            FirstName = input("please enter your first name: ") 
+            LastName = input("please enter your last name: ")
+            print("do you wish to give your address: ", end = "")
+            while not done:
+                answer = input()
+                answer = answer.lower()
+                if answer in ["no","n"]:
+                    values = (NHSNumber,FirstName,LastName,"NA","NA","NA","NA","NA")
+                    done = True
+                elif answer in ["yes","y"]:
+                    streetname = input("please enter your street name: ") 
+                    town = input("please enter your town name: ")
+                    postcode = input("please enter your Postcode: ")
+                    phone_number = input("please enter your Phone number: ")
+                    email = input("please enter your email: ")
+                    values = (NHSNumber,FirstName,LastName,streetname,town,postcode,phone_number,email)
+                    done = True
+                else:
+                    done = False
+                    print("please enter a valid answer: ")
+            self.active_detail.insert_customer_data(values)
+        

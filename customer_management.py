@@ -8,7 +8,7 @@ class customer_manage():
     def insert_customer_data(self,values):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
-            sql = "insert into customer (FirstName, LastName,Street,Town,Postcode,TelephoneNum, EmailAddress) values (?,?,?,?,?,?,?)"
+            sql = "insert into customer (ClientNHSNumber,FirstName,LastName,Street,Town,Postcode,TelephoneNum, EmailAddress) values (?,?,?,?,?,?,?,?)"
             cursor.execute(sql,values)
             db.commit()
 
@@ -22,7 +22,7 @@ class customer_manage():
     def customer_data(self):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
-            cursor.execute("select customerID, FirstName, LastName from customer ")
+            cursor.execute("select customerID, FirstName, LastName, ClientNHSNumber from customer ")
             customer = cursor.fetchall()
             return customer
 

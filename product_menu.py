@@ -20,42 +20,56 @@ class product_menu():
         elif choice == 2:
             choice1 = input("please enter the id of the product you wish to change: ")
             choice = self.get_answers()
-            product_name = self.get_product_name(choice1)
-            product_weight = self.get_product_weight(choice1)
-            product_code = self.get_product_code(choice1)
-            price = self.get_product_price(choice1)
             if choice == 1:
                 product_name = input("please enter the name of the product: ")
+                value = (product_name,choice1)
+                self.active_detail.update_product_name(value)
             elif choice == 2:
                 product_name = input("please enter the name of the product: ")
                 product_weight = input("please enter the new weight of the the product: ")
+                value = (product_name,product_weight,choice1)
+                self.active_detail.update_product_weightname(value)
             elif choice == 3:
                 product_name = input("please enter the name of the product: ")
                 product_weight = input("please enter the new weight of the the product: ")
                 ProductCode = input("please enter the new ProductCode of the product: ")
+                value = (product_name,product_weight,product_code,choice1)
+                self.active_detail.update_product_codeweightname(value)
             elif choice == 4:
                 product_weight = input("please enter the new weight of the the product: ")
+                value = (product_weight,choice1)
+                self.active_detail.update_product_weight(value)
             elif choice == 5:
                 product_weight = input("please enter the new weight of the the product: ")
                 ProductCode = input("please enter the new ProductCode of the product: ")
+                value = (product_weight,product_code,choice1)
+                self.active_detail.update_product_codeweight(value)
             elif choice == 6:
                 product_weight = input("please enter the new weight of the the product: ")
                 ProductCode = input("please enter the new ProductCode of the product: ")
                 price = input("please enter the new price of the the product")
+                value = (product_weight,product_code,price,choice1)
+                self.active_detail.update_product_pricecodeweight(value)
             elif choice == 7:
                 productCode = input("please enter the new ProductCode of the product: ")
+                value = (product_code,choice1)
+                self.active_detail.update_product_code(value)
             elif choice == 8:
                 productCode = input("please enter the new ProductCode of the product: ")
                 price = input("please enter the new price of the the product")
+                value = (product_code,price,choice1)
+                self.active_detail.update_product_pricecode(value)
             elif choice == 9:
                 price = input("please enter the new price of the the product")
+                value = (price,choice1)
+                self.active_detail.update_product_price(value)
             elif choice == 10:
                 product_name = input("please enter the name of the product: ")
                 product_weight = input("please enter the new weight of the the product: ")
                 productCode = input("please enter the new ProductCode of the product: ")
                 price = input("please enter the new price of the the product")
-            value = (product_name,product_weight,product_code,price,choice1)
-            self.active_detail.update_product_data(value)
+                value = (product_name,product_weight,product_code,price,choice1)
+                self.active_detail.update_product_data(value)
         elif choice == 3:
             product = self.active_detail.product_data()
             print(product)

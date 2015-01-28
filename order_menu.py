@@ -18,17 +18,19 @@ class order_menu():
         elif choice == 2:
             id = input("please enter the id of the product you wish to change: ")
             choice = self.get_answers()
-            order_date = self.get_order_date(id)
-            order_size = self.get_order_size(id)
             if choice == 1:
                 order_date = input("please enter the date of the order: ")
+                value = (order_date,id)
+                self.active_detail.update_order_date(value)
             elif choice == 2:
                 order_size = input("please enter the new size of the order: ")
+                value = (order_size,id)
+                self.active_detail.update_order_size(value)
             elif choice == 3:
                 order_date = input("please enter the date of the order: ")
                 order_size = input("please enter the new size of the order: ")
-            value = (order_date,order_size,id)
-            self.active_detail.update_order_data(value)
+                value = (order_date,order_size,id)
+                self.active_detail.update_order_sizedate(value)
         elif choice == 3:
             order = self.active_detail.order_data()
             print(order)
@@ -61,6 +63,7 @@ class order_menu():
             cursor = db.cursor()
             cursor.execute("select OrderDate from Orders where OrderNum=?",(id,))
             Product = cursor.fetchone()
+            
     def get_order_size(self,id):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()

@@ -29,7 +29,8 @@ def run_main_menu():
         print()
         choice, choice1 = run_main_menu()
     if choice == 0:
-        return choice
+        choice1 = 0
+        return choice, choice1
     elif choice in range(1,6):
         choice1 = run_sub_menu(choice)
     else:
@@ -159,51 +160,6 @@ def validate_choice():
             print()
             choice, choice1  = run_main_menu()
     return choice, choice1 
-
-def insert_customer_data(values):
-    with sqlite3.connect("pharmacy_database.db") as db:
-        cursor = db.cursor()
-        sql = "insert into customer (FirstName, LastName,Street,Town,Postcode,TelephoneNum, EmailAddress) values (?,?,?,?,?,?,?)"
-        cursor.execute(sql,values)
-        db.commit()
-
-def update_customer_data(data):
-    with sqlite3.connect("pharmacy_database.db") as db:
-        cursor = db.cursor()
-        sql = "update customer set FirstName=?, LastName=?,street=?,town=?,postcode=?,TelephoneNum=?,EmailAddress=? where customerID=?"
-        cursor.execute(sql,data)
-        db.commit()
-
-def customer_data():
-    with sqlite3.connect("pharmacy_database.db") as db:
-        cursor = db.cursor()
-        cursor.execute("select customerID, FirstName, LastName from customer ")
-        customer = cursor.fetchall()
-        return customer
-
-def display_customer_data(FirstName):
-    with sqlite3.connect("pharmacy_database.db") as db:
-        cursor = db.cursor()
-        cursor.execute("select * from customer where FirstName=?",(FirstName,))
-        customer = cursor.fetchone()
-        return customer
-
-def display_customer_data(id):
-    with sqlite3.connect("pharmacy_database.db") as db:
-        cursor = db.cursor()
-        cursor.execute("select * from customer where customerID=?",(id,))
-        customer = cursor.fetchone()
-        return customer
-
-def delete_customer_data(data):
-    with sqlite3.connect("pharmacy_database.db") as db:
-        cursor = db.cursor()
-        cursor.execute("delete from customer where customerID=?",(data,))
-    db.commit()
-
-
-
-
 
 if __name__ == "__main__":
     run_main()

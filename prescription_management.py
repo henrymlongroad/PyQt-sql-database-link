@@ -13,6 +13,43 @@ class prescription_manage():
             cursor.execute(sql,values)
             db.commit()
 
+
+    def update_prescription_Pharmacist(self,data):
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            sql = "update Prescription set PharmacistID=? where PrescriptionCode=?"
+            cursor.execute(sql,data)
+            db.commit()
+
+
+    def update_prescription_Pharmacustom(self,data):
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            sql = "update Prescription set PharmacistID=?, CustomerID=?where PrescriptionCode=?"
+            cursor.execute(sql,data)
+            db.commit()
+
+    def update_prescription_customer(self,data):
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            sql = "update Prescription set CustomerID=? where PrescriptionCode=?"
+            cursor.execute(sql,data)
+            db.commit()
+
+    def update_prescription_quatitycustomer(self,data):
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            sql = "update Prescription set CustomerID=?, QuantityOfMed=? where PrescriptionCode=?"
+            cursor.execute(sql,data)
+            db.commit()
+
+    def update_prescription_quantity(self,data):
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            sql = "update Prescription set QuantityOfMed=? where PrescriptionCode=?"
+            cursor.execute(sql,data)
+            db.commit()
+
     def update_prescription_data(self,data):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()

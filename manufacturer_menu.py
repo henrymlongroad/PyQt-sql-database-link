@@ -21,77 +21,86 @@ class manufacturer_menu():
         elif choice == 2:
             id = input("please enter the id of the product you wish to change: ")
             choice = self.get_answers()
-            manufacturer = self.get_manufacturer_name(id)
-            product = self.get_product(id)
-            town = self.get_manufacturer_town(id)
-            street= self.get_manufacturer_street(id)
-            postcode = self.get_manufacturer_postcode(id)
             if choice == 1:
                 manufacturer = input("please enter the name of the manufacturer: ")
-                value = (manufacturer,product,town,street,postcode)
+                value = (manufacturer,id)
+                self.active_detail.update_manufacturer_name(value)
             elif choice == 2:
                 manufacturer = input("please enter the name of the manufacturer: ")
-                product = input("please enter the new weight of the the manufacturer: ")
-                value = (manufacturer,product,town,street,postcode)
+                product = input("please enter the new name of the  product: ")
+                value = (manufacturer,product,id)
+                self.active_detail.update_manufacturer_productname(value)
             elif choice == 3:
                 manufacturer = input("please enter the name of the manufacturer: ")
-                product = input("please enter the new weight of the the manufacturer: ")
+                product = input("please enter the new name of the product: ")
                 town = input("please enter the new town of the manufacturer: ")
-                value = (manufacturer,product,town,street,postcode)
+                value = (manufacturer,product,town,id)
+                self.active_detail.update_manufacturer_townproductname(value)
             elif choice == 4:
                 manufacturer = input("please enter the name of the manufacturer: ")
-                product = input("please enter the new weight of the the manufacturer: ")
+                product = input("please enter the new name of the product: ")
                 town = input("please enter the new town of the manufacturer: ")
                 street= input("please enter the new street of the the manufacturer")
-                value = (manufacturer,product,town,street,postcode)
+                value = (manufacturer,product,town,street,id)
+                self.active_detail.update_manufacturer_streettownproductname(value)
             elif choice == 5:
-                product = input("please enter the new product of the the manufacturer: ")
-                value = (manufacturer,product,town,street,postcode)
+                product = input("please enter the new name of the product: ")
+                value = (product,id)
+                self.active_detail.update_manufacturer_product(value)
             elif choice == 6:
-                product = input("please enter the new product of the the manufacturer: ")
+                product = input("please enter the new name of the product: ")
                 town = input("please enter the new town of the manufacturer: ")
-                value = (manufacturer,product,town,street,postcode)
+                value = (product,town,id)
+                self.active_detail.update_manufacturer_townproduct(value)
             elif choice == 7:
-                product = input("please enter the new weight of the the manufacturer: ")
-                street = input("please enter the new town of the manufacturer: ")
-                postcode = input("please enter the new street of the the manufacturer")
-                value = (manufacturer,product,town,street,postcode)
+                product = input("please enter the new name of the product: ")
+                town = input("please enter the new town of the manufacturer: ")
+                street = input("please enter the new street of the the manufacturer")
+                value = (product,town,street,id)
+                self.active_detail.update_manufacturer_streettownproduct(value)
             elif choice == 8:
-                product = input("please enter the new weight of the the manufacturer: ")
+                product = input("please enter the new name of the product: ")
                 town = input("please enter the new town of the manufacturer: ")
                 street= input("please enter the new street of the the manufacturer")
                 postcode = input("please enter the new postcode of the the manufacturer")
-                value = (manufacturer,product,town,street,postcode)
+                value = (product,town,street,postcode,id)
+                self.active_detail.update_manufacturer_postcodestreettownproduct(value)
             elif choice == 9:
-                street = input("please enter the new town of the manufacturer: ")
-                value = (manufacturer,product,town,street,postcode)
+                town = input("please enter the new town of the manufacturer: ")
+                value = (town,id)
+                self.active_detail.update_manufacturer_town(value)
             elif choice == 10:
                 town = input("please enter the new town of the manufacturer: ")
                 street = input("please enter the new street of the the manufacturer")
-                value = (manufacturer,product,town,street,postcode)
+                value = (town,street,postcode,id)
+                self.active_detail.update_manufacturer_streettown(value)
             elif choice == 11:
                 town = input("please enter the new town of the manufacturer: ")
                 street= input("please enter the new street of the the manufacturer")
                 postcode = input("please enter the new postcode of the the manufacturer")
-                value = (manufacturer,product,town,street,postcode)
+                value = (town,street,postcode,id)
+                self.active_detail.update_manufacturer_postcodestreettown(value)
             elif choice == 12:
                 street = input("please enter the new street of the the manufacturer")
-                value = (manufacturer,product,town,street,postcode)
+                value = (street,postcode,id)
+                self.active_detail.update_manufacturer_street(value)
             elif choice == 13:
                 street = input("please enter the new street of the the manufacturer")
                 postcode = input("please enter the new postcode of the the manufacturer")
-                value = (manufacturer,product,town,street,postcode)
+                value = (street,postcode,id)
+                self.active_detail.update_manufacturer_postcodestreet(value)
             elif choice == 14:
                 postcode == input("please enter the new postcode of the the manufacturer")
-                value = (manufacturer,product,town,street,postcode)
+                value = (postcode,id)
+                self.active_detail.update_manufacturer_postcode(value)
             elif choice == 15:
                 manufacturer = input("please enter the name of the manufacturer: ")
-                product = input("please enter the new weight of the the manufacturer: ")
+                product = input("please enter the new name of the product: ")
                 town = input("please enter the new town of the manufacturer: ")
                 street = input("please enter the new street of the manufacturer: ")
                 postcode = input("please enter the new postcode of the the manufacturer")
                 value = (manufacturer,product,town,street,postcode)
-            self.active_detail.update_manufacturer_data(value)
+                self.active_detail.update_manufacturer_data(value)
         elif choice == 3:
             manufacturer = self.active_detail.manufacturer_data()
             print(manufacturer)
@@ -102,13 +111,13 @@ class manufacturer_menu():
                 choices = input()
                 choices = choices.lower()
                 if choices in ["manufacturer"]:
-                    print("please enter the pharmacist id you wish to view: " ,end = "")
+                    print("please enter the manufacturer you wish to view: " ,end = "")
                     id = input()
                     rename = self.active_detail.display_manufacturer_data(id)
                     print(rename)
                     done = True
                 elif choices in ["product"]:
-                    print("please enter the customer id you wish to view: ",end = "")
+                    print("please enter the product you wish to view: ",end = "")
                     name = input()
                     rename = self.active_detail.display_manufacturer_data(name)
                     print(rename)
@@ -119,42 +128,6 @@ class manufacturer_menu():
         elif choice == 5:
             choice = input("which id do you want to delete: ")
             self.active_detail.delete_manufacturer_data(choice)
-
-    def get_Manufacturer_name(self,id):
-        with sqlite3.connect("pharmacy_database.db") as db:
-            cursor = db.cursor()
-            cursor.execute("select Manufacturer from Manufacturer where Manufacturer=?",(id,))
-            manufacturer = cursor.fetchone()
-            return manufacturer
-        
-    def get_Product_info(self,id):
-        with sqlite3.connect("pharmacy_database.db") as db:
-            cursor = db.cursor()
-            cursor.execute("select Product from Manufacturer where Manufacturer=?",(id,))
-            Product = cursor.fetchone()
-            return Product
-
-    def get_manufacturer_town(self,id):
-        with sqlite3.connect("pharmacy_database.db") as db:
-            cursor = db.cursor()
-            cursor.execute("select ManufacturerTown from Manufacturer where Manufacturer=?",(id,))
-            town = cursor.fetchone()
-            return town
-        
-    def get_manufacturer_street(self,id):
-        with sqlite3.connect("pharmacy_database.db") as db:
-            cursor = db.cursor()
-            cursor.execute("select ManufacturerStreet from Manufacturer where Manufacturer=?",(id,))
-            street = cursor.fetchone()
-            return street
-        
-    def get_manufacturer_postcode(self,id):
-        with sqlite3.connect("pharmacy_database.db") as db:
-            cursor = db.cursor()
-            cursor.execute("select ManufacturerPostcode from Manufacturer where Manufacturer=?",(id,))
-            postcode = cursor.fetchone()
-            return postcode
-
                           
     def get_answers(self):
         print("what do you want to update?")
