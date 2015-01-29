@@ -13,21 +13,22 @@ class customer_menu():
         if choice == 1:
             done = False
             NHSNumber = input("please enter the patients NHSnumber: ")
-            FirstName = input("please enter your first name: ") 
-            LastName = input("please enter your last name: ")
-            print("do you wish to give your address: ", end = "")
+            FirstName = input("please enter the clients first name: ") 
+            LastName = input("please enter the clients last name: ")
+            HouseNumber= input("please enter the clients house number")
+            streetname = input("please enter the clients street name: ") 
+            town = input("please enter the clients town name: ")
+            postcode = input("please enter the clients Postcode: ")
+            print("does the client wish to give their phone number and email address: ", end = "")
             while not done:
                 answer = input()
                 answer = answer.lower()
                 if answer in ["no","n"]:
-                    values = (NHSNumber,FirstName,LastName,"NA","NA","NA","NA","NA")
+                    values = (NHSNumber,FirstName,LastName,streetname,town,postcode,"NA","NA")
                     done = True
                 elif answer in ["yes","y"]:
-                    streetname = input("please enter your street name: ") 
-                    town = input("please enter your town name: ")
-                    postcode = input("please enter your Postcode: ")
-                    phone_number = input("please enter your Phone number: ")
-                    email = input("please enter your email: ")
+                    phone_number = input("please enter the clients Phone number: ")
+                    email = input("please enter the clients email: ")
                     values = (NHSNumber,FirstName,LastName,streetname,town,postcode,phone_number,email)
                     done = True
                 else:
@@ -45,15 +46,14 @@ class customer_menu():
                 answer = input()
                 answer = answer.lower()
                 if answer in ["no","n"]:
-                    data = (FirstName,LastName,"NA","NA","NA","NA","NA",choice)
+                    data = (FirstName,LastName,"NA","NA","NA","NA",choice)
                     done = True
                 elif answer in ["yes","y"]:
                     streetname = input("please enter their street name: ") 
                     town = input("please enter their town name: ")
                     postcode = input("please enter their Postcode: ")
                     phone_number = input("please enter their Phone number: ")
-                    email = input("please enter their email: ")
-                    data = (FirstName,LastName,streetname,town,postcode,phone_number,email,choice)
+                    data = (FirstName,LastName,streetname,town,postcode,phone_number,choice)
                     done = True
                 else:
                     print("please enter a valid choice: ", end = "")
@@ -87,25 +87,60 @@ class customer_menu():
             
     def run_secondary_menu(self,NHSNumber):
             done = False
-            FirstName = input("please enter your first name: ") 
-            LastName = input("please enter your last name: ")
-            print("do you wish to give your address: ", end = "")
+            NHSNumber = input("please enter the patients NHSnumber: ")
+            FirstName = input("please enter the clients first name: ") 
+            LastName = input("please enter the clients last name: ")
+            HouseNumber = input("please enter the clients house number")
+            streetname = input("please enter the clients street name: ") 
+            town = input("please enter the clients town name: ")
+            postcode = input("please enter the clients Postcode: ")
+            print("does the client wish to give their phone number and email address: ", end = "")
             while not done:
                 answer = input()
                 answer = answer.lower()
                 if answer in ["no","n"]:
-                    values = (NHSNumber,FirstName,LastName,"NA","NA","NA","NA","NA")
+                    values = (NHSNumber,FirstName,LastName,streetname,town,postcode,"NA","NA")
                     done = True
                 elif answer in ["yes","y"]:
-                    streetname = input("please enter your street name: ") 
-                    town = input("please enter your town name: ")
-                    postcode = input("please enter your Postcode: ")
-                    phone_number = input("please enter your Phone number: ")
-                    email = input("please enter your email: ")
+                    phone_number = input("please enter the clients Phone number: ")
+                    email = input("please enter the clients email: ")
                     values = (NHSNumber,FirstName,LastName,streetname,town,postcode,phone_number,email)
                     done = True
                 else:
                     done = False
                     print("please enter a valid answer: ")
             self.active_detail.insert_customer_data(values)
-        
+
+        def get_answers(self):
+            print("what do you want to update?")
+            print()
+            print("1.First_Name")#
+            print("2.First_Name and Last_name")#
+            print("3.First_Name, Last_name and Phone_Number")#
+            print("4.First_Name, Last_name, Phone_Number and email_address")#
+            print("5.First_Name, Last_name, Phone_Number, email_address and HouseNumber")#
+            print("6.First_Name, Last_name, Phone_Number, email_address, HouseNumber, Street and Postcode")#        
+            print("7.Last_name")#
+            print("8.Last_name and Phone_Number")#
+            print("9.Last_name, Phone_Number and email_address")#
+            print("10.Last_name, Phone_Number, email_address and HouseNumber")#
+            print("11.Last_name, Phone_Number, email_address, HouseNumber, Street and Postcode")
+            print("12.Last_name, Phone_Number, email_address, HouseNumber, Town, Street and Postcode")
+            print("13.Phone_Number")
+            print("14.Phone_Number and email_address")
+            print("15.Phone_Number, email_address, HouseNumber, Street and Postcode")
+            print("16.Phone_Number, email_address, HouseNumber, Town, Street and Postcode")
+            print("17.email_address")
+            print("18.email_address, HouseNumber, Street and Postcode")
+            print("19.email_address, HouseNumber, Town, Street and Postcode")
+            print("20.HouseNumber, Street and Postcode")
+            print("21.HouseNumber, Town, Street and Postcode")
+            print("22.update all") 
+            print("what is your choice: ",end = "")
+            try:
+                choice = int(input())
+            except ValueError:
+               print()
+               self.get_answers()
+            return choice
+            
