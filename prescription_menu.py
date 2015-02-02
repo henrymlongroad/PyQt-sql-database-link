@@ -3,6 +3,8 @@ import sqlite3
 
 from prescription_management import*
 from customer_menu import*
+from product_management import*
+
 
 #menu for managing customer
 class prescription_menu():
@@ -10,6 +12,7 @@ class prescription_menu():
         self.running = None
         self.active_detail = prescription_manage()
         self.active_replacement = customer_menu()
+        self.active_products = product_manage()
 
     def run_menu(self,choice):
         if choice == 1:
@@ -17,10 +20,10 @@ class prescription_menu():
             customer_id = input("please enter the customer NHS number: ")
             Customer_id = self.get_customer_id()
             if customer_id in Customer_id:
-                QuantityOfMed = input("please enter the quantity of medication requested: ")
+                QuantityOfMed = run_add_products()
             elif customer_id not in Customer_id:
                 self.active_replacement.run_secondary_menu(customer_id)
-                QuantityOfMed = input("please enter the quantity of medication requested: ")
+                QuantityOfMed = run_add_products()
             values = (pharmacist_id,customer_id,QuantityOfMed)
             self.active_detail.insert_prescription_data(values)
         elif choice == 2:
@@ -115,3 +118,14 @@ class prescription_menu():
            print()
            self.get_answers()
         return choice
+
+
+    def run_add_products(self):
+        complete = False
+        while not complete:
+            products = active_products.product_data()
+            print(products)
+            complete = True
+        quantityofmeds = "salt drip"
+            
+        return quantityofmeds

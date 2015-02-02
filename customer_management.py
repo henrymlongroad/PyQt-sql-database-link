@@ -50,7 +50,7 @@ class customer_manage():
     def update_customer_housestreetpostfirst(self,data):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
-            sql = "update customer set FirstName=?, LastName=?,Street=?,Postcode=?,TelephoneNum=?, Emailaddress=?, HouseNumber=? where customerID=?"
+            sql = "update customer set FirstName=?, LastName=?,TelephoneNum=?, Emailaddress=?, HouseNumber=?,Street=?,Postcode=? where customerID=?"
             cursor.execute(sql,data)
             db.commit()
 
@@ -75,13 +75,112 @@ class customer_manage():
             cursor.execute(sql,data)
             db.commit()
 
-    def update_customer_HomeEmailTeleLast(self,data):
+    def update_customer_HouseEmailTeleLast(self,data):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
             sql = "update customer set LastName=?,TelephoneNum=?, Emailaddress=?, HouseNumber=? where customerID=?"
             cursor.execute(sql,data)
             db.commit()
 
+
+    def update_customer_housestreetpostLast(self,data):
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            sql = "update customer set LastName=?,TelephoneNum=?, Emailaddress=?, HouseNumber=?, Street=?, postcode=? where customerID=?"
+            cursor.execute(sql,data)
+            db.commit()
+
+    def update_customer_housetownstreetpostLast(self,data):
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            sql = "update customer set LastName=?,TelephoneNum=?, Emailaddress=?, HouseNumber=?, Street=?, postcode=?, town=? where customerID=?"
+            cursor.execute(sql,data)
+            db.commit()
+            
+    def update_customer_Tele(self,data):
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            sql = "update customer set TelephoneNum=? where customerID=?"
+            cursor.execute(sql,data)
+            db.commit()
+
+    def update_customer_EmailTele(self,data):
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            sql = "update customer set TelephoneNum=?, Emailaddress=? where customerID=?"
+            cursor.execute(sql,data)
+            db.commit()
+            
+    def update_customer_HouseEmailTele(self,data):
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            sql = "update customer set TelephoneNum=?, Emailaddress=?, HouseNumber=? where customerID=?"
+            cursor.execute(sql,data)
+            db.commit()
+
+    def update_customer_housestreetposttele(self,data):
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            sql = "update customer set TelephoneNum=?, Emailaddress=?, HouseNumber=?, Street=?, postcode=? where customerID=?"
+            cursor.execute(sql,data)
+            db.commit()
+
+    def update_customer_housetownstreetposttele(self,data):
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            sql = "update customer set TelephoneNum=?, Emailaddress=?, HouseNumber=?, Street=?, postcode=?, town=? where customerID=?"
+            cursor.execute(sql,data)
+            db.commit()
+
+    def update_customer_Email(self,data):
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            sql = "update customer set Emailaddress=? where customerID=?"
+            cursor.execute(sql,data)
+            db.commit()
+            
+    def update_customer_HouseEmail(self,data):
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            sql = "update customer set Emailaddress=?, HouseNumber=? where customerID=?"
+            cursor.execute(sql,data)
+            db.commit()
+
+    def update_customer_housestreetpost(self,data):
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            sql = "update customer set Emailaddress=?, HouseNumber=?, Street=?, postcode=? where customerID=?"
+            cursor.execute(sql,data)
+            db.commit()
+
+    def update_customer_housetownstreetpost(self,data):
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            sql = "update customer set  Emailaddress=?, HouseNumber=?, Street=?, postcode=?, town=? where customerID=?"
+            cursor.execute(sql,data)
+            db.commit()
+
+    def update_customer_House(self,data):
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            sql = "update customer set HouseNumber=? where customerID=?"
+            cursor.execute(sql,data)
+            db.commit()
+
+    def update_customer_housestreetpost(self,data):
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            sql = "update customer set HouseNumber=?, Street=?, postcode=? where customerID=?"
+            cursor.execute(sql,data)
+            db.commit()
+
+    def update_customer_housetownstreetpost(self,data):
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            sql = "update customer set HouseNumber=?, Street=?, postcode=?, town=? where customerID=?"
+            cursor.execute(sql,data)
+            db.commit()
+            
     def update_customer_data(self,data):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
