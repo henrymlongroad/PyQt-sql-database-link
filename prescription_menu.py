@@ -17,8 +17,16 @@ class prescription_menu():
     def run_menu(self,choice):
         if choice == 1:
             pharmacist_id= "suesannah9635"
-            customer_id = input("please enter the customer NHS number: ")
-            Customer_id = self.get_customer_id()
+            customer_ID = []
+            count=1
+            done = False
+            while not done:
+                customer_ID[count] = self.get_customer_ID()
+                customer_ID[count] = self.customer_ID_check(customer_ID[count],count)
+            Customer_NHS = self.get_customer_NHS()
+            Customer_NHS = self.customer_NHS_check(Customer_NHS)
+            customer_NHS = input('please enter the customer NHS number: ')
+
             if customer_id in Customer_id:
                 QuantityOfMed = run_add_products()
             elif customer_id not in Customer_id:
@@ -92,9 +100,19 @@ class prescription_menu():
         elif choice == 5:
             choice = input("which id do you want to delete: ")
             self.active_detail.delete_prescription_data(choice)
-            
 
-    def get_customer_id(self):
+
+    def get_customer_ID(self):
+        with sqlite3.connect("pharmacy_database.db") as db:
+            cursor = db.cursor()
+            cursor.execute("select CustomerID from Customer ")
+            CustomerID = cursor.fetchall()
+            name = len(CustomerID)
+            print(name)
+            print(CustomerID)
+            return CustomerID
+
+    def get_customer_NHS(self):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
             cursor.execute("select ClientNHSNumber from Customer ")
@@ -127,5 +145,27 @@ class prescription_menu():
             print(products)
             complete = True
         quantityofmeds = "salt drip"
-            
         return quantityofmeds
+
+    def customer_NHS_check(self,customer_NHS):
+        count=1
+        for each in name:
+            if count == 1 or count == 2:
+                pass
+            elif count == 14 or count == 13 or count == 12:
+                pass
+            else:
+                name1 += each
+            count+=1
+        return name1
+
+    def customer_ID_check(self,customer_ID,count):
+        for each1 in name:
+            if count == 1 :
+                pass
+            elif count == 3 or count == 4:
+                pass
+            else:
+                name1 += each1
+        customer_ID[count] = name1
+        return customer_ID

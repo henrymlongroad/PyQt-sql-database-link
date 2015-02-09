@@ -8,7 +8,7 @@ class customer_manage():
     def insert_customer_data(self,values):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
-            sql = "insert into customer (ClientNHSNumber,FirstName,LastName,HouseNumber,Street,Town,Postcode,TelephoneNum, EmailAddress) values (?,?,?,?,?,?,?,?)"
+            sql = "insert into customer (ClientNHSNumber,FirstName,LastName,HouseNumber,Street,Town,Postcode,TelephoneNum, EmailAddress) values (?,?,?,?,?,?,?,?,?)"
             cursor.execute(sql,values)
             db.commit()
 
@@ -81,7 +81,6 @@ class customer_manage():
             sql = "update customer set LastName=?,TelephoneNum=?, Emailaddress=?, HouseNumber=? where customerID=?"
             cursor.execute(sql,data)
             db.commit()
-
 
     def update_customer_housestreetpostLast(self,data):
         with sqlite3.connect("pharmacy_database.db") as db:
@@ -184,17 +183,9 @@ class customer_manage():
     def update_customer_data(self,data):
         with sqlite3.connect("pharmacy_database.db") as db:
             cursor = db.cursor()
-            sql = "update customer set FirstName=?, LastName=?,Street=?,Town=?,Postcode=?,TelephoneNum=? where customerID=?"
+            sql = "update customer set FirstName=?, LastName=?,HouseNumber=?,Street=?,Postcode=?,Town=?,Emailaddress=?,TelephoneNum=? where customerID=?"
             cursor.execute(sql,data)
             db.commit()
-
-    def update_customer_data(self,data):
-        with sqlite3.connect("pharmacy_database.db") as db:
-            cursor = db.cursor()
-            sql = "update customer set FirstName=?, LastName=?,Street=?,Town=?,Postcode=?,TelephoneNum=? where customerID=?"
-            cursor.execute(sql,data)
-            db.commit()
-
 
     def customer_data(self):
         with sqlite3.connect("pharmacy_database.db") as db:
