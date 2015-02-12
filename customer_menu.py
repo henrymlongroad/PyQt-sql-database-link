@@ -12,7 +12,15 @@ class customer_menu():
     def run_menu(self,choice):
         if choice == 1:
             done = False
-            NHSNumber = input("please enter the patients NHSnumber: ")
+            while not done:
+                true = False
+                NHSNumber = input("please enter the patients NHSnumber: ")
+                true = self.run_NHS_validate(NHSNumber)
+                if true == True:
+                    done = True
+                else:
+                    done = False
+                    print("that is not a valid NHS number")
             FirstName = input("please enter the clients first name: ") 
             LastName = input("please enter the clients last name: ")
             HouseNumber= input("please enter the clients house number: ")
@@ -20,6 +28,7 @@ class customer_menu():
             town = input("please enter the clients town name: ")
             postcode = input("please enter the clients Postcode: ")
             print("does the client wish to give their phone number and email address: ", end = "")
+            done = False
             while not done:
                 answer = input()
                 answer = answer.lower()
@@ -296,3 +305,27 @@ class customer_menu():
            self.get_answers()
         return choice
             
+    def run_NHS_validate(self,NHSNumber):
+        count = 1
+        for each in NHSNumber:
+            each1 = ord(each)
+            if each1 in range(48,57):
+                if count in range(1,4) or count in range(5,8) or count in range(9,13):
+                    valid1 = True
+                elif count == 4:
+                    valid2 = False
+                elif count == 8:
+                    valid3 = False
+            elif each1 == 32:
+                if count in range(1,4) or count in range(5,8) or count in range(9,13):
+                    valid1 = False
+                elif count == 4:
+                    valid2 = True
+                elif count == 8:
+                    valid3 = True  
+            count+=1 
+        if valid1 == True and valid2 == True and valid3 == True:
+            true = True
+        else:
+            true = False
+        return true
